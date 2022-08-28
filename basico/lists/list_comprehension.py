@@ -14,6 +14,10 @@ def fourth_list(iterable):
 	return [s for s in iterable if "a" not in s]
 
 
+def matrix():
+	return [[x + 1 for x in range(5)] for _ in range(5)]
+
+
 if __name__ == '__main__':
 	fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
 
@@ -21,3 +25,4 @@ if __name__ == '__main__':
 	print(second_list())
 	print(third_list(fruits))
 	print(fourth_list(fruits))
+	print(matrix())
