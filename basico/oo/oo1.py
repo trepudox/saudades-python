@@ -44,14 +44,24 @@ class Funcionario(Pessoa):
 
 
 if __name__ == '__main__':
+	print("-----------------------------")
+
 	marco = Pessoa("Marco", 20)
 	print(f"Nome: {marco.nome}")
 	print(f"Idade: {marco.idade}")
 	print(f"Marco: {marco}")
+	print(f"Marco type: {type(marco)}")
 
 	print("-----------------------------")
 
 	marco2 = Funcionario("Marco", 20, 15)
 	print(f"Nome: {marco2.nome}")
 	print(f"Idade: {marco2.idade}")
-	print(f"Marco Funcionario: {marco2}")
+	print(f"Salario em 8 horas: {marco2.calcular_salario(8)}")
+	print(f"Marco2: {marco2}")
+
+	print(f"Marco2 type: {type(marco2)}")
+	print(f"Marco2 is Pessoa? {isinstance(marco2, Funcionario)}")
+	print(f"Marco2 is Funcionario? {isinstance(marco2, Funcionario)}")
+
+	print("-----------------------------")
