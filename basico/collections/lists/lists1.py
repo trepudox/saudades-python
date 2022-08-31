@@ -15,7 +15,10 @@ if __name__ == '__main__':
 	print('fruits.index("apple"):', fruits.index("apple"))  # depois de ordenada
 
 	fruits2.extend(fruits2)  # basicamente um append() de outra lista
-	print("fruits2.extend(fruits2) == ", fruits2)
+	print("fruits2.extend(fruits2) = ", fruits2)
+
+	# print(any(fruits) == "apple")
+	print("apple" in fruits)
 
 	fruits.clear()
-	print("fruits.clear() ==", fruits)
+	print("fruits.clear() =", fruits)
