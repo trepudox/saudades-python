@@ -11,7 +11,17 @@ class UserInputError(Exception):
     pass
 
 
-def program_logic() -> None:
+def program_logic(collection: Collection) -> None:
+    functions_dict: dict = {
+        1: save_document,
+        2: update_document,
+        3: find_by_object_id,
+        4: find_all_objects_by_name,
+        5: find_all_objects,
+        6: delete_object_by_id,
+        9: menu,
+    }
+
     while True:
         menu()
         escolha: int = int(input(">>> "))
@@ -19,29 +29,14 @@ def program_logic() -> None:
 
         if escolha == 0:
             break
-        elif escolha == 1:
-            save_document(connected_collection)
-            pula_linha()
-        elif escolha == 2:
-            update_document(connected_collection)
-            pula_linha()
-        elif escolha == 3:
-            find_by_object_id(connected_collection)
-            pula_linha()
-        elif escolha == 4:
-            find_all_objects_by_name(connected_collection)
-            pula_linha()
-        elif escolha == 5:
-            find_all_objects(connected_collection)
-            pula_linha()
-        elif escolha == 6:
-            delete_object_by_id(connected_collection)
-            pula_linha()
         elif escolha == 9:
-            menu()
-            pula_linha()
+            functions_dict[9]()
         else:
-            print("Escolha uma opção válida!")
+            try:
+                functions_dict.get(escolha)(collection)
+            except TypeError:
+                invalid_option()
+
             pula_linha()
 
 
@@ -147,14 +142,18 @@ def delete_object_by_id(collection: Collection) -> None:
     collection.delete_one(obj_to_delete)
 
 
+def invalid_option() -> None:
+    print("Escolha uma opção válida!")
+
+
 if __name__ == '__main__':
     inputted_name: str = str(input("Digite o nome da collection: "))
     pula_linha()
     connected_collection: Collection = connect_to_db_and_retrieve_collection(inputted_name)
 
     try:
-        program_logic()
+        program_logic(connected_collection)
     except UserInputError:
-        program_logic()
+        program_logic(connected_collection)
 
     print("Fim da execução")
